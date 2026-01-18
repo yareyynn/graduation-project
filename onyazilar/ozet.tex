@@ -1,0 +1,27 @@
+% --- Türkçe Özet Kısmı ---
+\chapter*{ÖZET}
+\addcontentsline{toc}{chapter}{ÖZET} % İçindekiler tablosuna ekler
+
+Otonom sürüş teknolojilerinde, aracın çevresel koşullardan ve sinyal kesintilerinden etkilenmeden konumunu, hızını ve yönelimini yüksek doğrulukla kestirebilmesi güvenli seyrüseferin temelini oluşturmaktadır. Tekil sensör sistemleri, kentsel alanlardaki sinyal yansımaları veya değişken ışık koşulları nedeniyle güvenilirliğini yitirebilmektedir. Bu çalışmada, Küresel Konumlandırma Sistemi (GNSS), Ataletsel Ölçüm Birimi (IMU), LiDAR ve Kamera verilerini asenkron bir yapıda birleştiren dayanıklı bir sensör füzyonu mimarisi geliştirilecektir.
+
+Proje kapsamında, sistemin dinamiklerini ve ölçüm modellerini en iyi şekilde temsil edebilmek amacıyla hibrit bir filtreleme yaklaşımı benimsenmiştir. Yüksek frekanslı IMU ve mutlak konum sağlayan GNSS verilerinin entegrasyonunda, hesaplama verimliliği sağlayan Genişletilmiş Kalman Filtresi (EKF) kullanılırken; SLAM algoritmalarından elde edilen ve yüksek derecede doğrusal olmayan belirsizlikler içeren odometri verilerinin işlenmesinde Kokusuz Kalman Filtresi (UKF) tercih edilmiştir. Ayrıca, çevresel faktörlere bağlı olarak değişen sensör gürültülerini dinamik olarak telafi etmek amacıyla İnovasyon tabanlı Adaptif Kovaryans Kestirimi (IAE) yöntemi algoritmaya entegre edilecektir.
+
+Geliştirilecek sistem, Robot İşletim Sistemi (ROS 2) üzerinde düğüm tabanlı bir mimari ile kurgulanacak olup, endüstri standardı olan KITTI veri seti kullanılarak test edilecektir. Elde edilecek bulgular ve simülasyon sonuçları, önerilen çoklu sensör füzyonu yapısının, tekil sensör kullanımına kıyasla konumlandırma hatasını ($RMSE$) minimize ettiğini ve sensör arızalarına karşı sistemin sürekliliğini sağladığını göstermesi umulmaktadır.
+
+\vspace{1cm}
+\noindent \textbf{Anahtar Kelimeler:} Otonom Araçlar, Sensör Füzyonu, Kalman Filtresi, EKF, UKF, ROS 2, Konumlandırma.
+
+\newpage
+
+% --- İngilizce Abstract Kısmı ---
+\chapter*{ABSTRACT}
+\addcontentsline{toc}{chapter}{ABSTRACT} % İçindekiler tablosuna ekler
+
+In autonomous driving technologies, the ability of a vehicle to estimate its position, velocity, and orientation with high accuracy, regardless of environmental conditions and signal interruptions, is the foundation of safe navigation. Single-sensor systems often lose reliability due to signal multipath effects in urban areas or varying lighting conditions. In this study, a robust sensor fusion architecture that integrates Global Navigation Satellite System (GNSS), Inertial Measurement Unit (IMU), LiDAR, and Camera data in an asynchronous framework will be developed.
+
+Within the scope of the project, a hybrid filtering approach has been adopted to best represent the system dynamics and measurement models. While the Extended Kalman Filter (EKF) is utilized for integrating high-frequency IMU data with absolute GNSS positioning to ensure computational efficiency, the Unscented Kalman Filter (UKF) has been preferred for processing odometry data derived from SLAM algorithms, which contain highly non-linear uncertainties. Furthermore, an Innovation-based Adaptive Covariance Estimation (IAE) method will be integrated into the algorithm to dynamically compensate for sensor noises that vary depending on environmental factors.
+
+The developed system will be constructed on a node-based architecture using the Robot Operating System (ROS 2) and will be tested using the industry-standard KITTI dataset. It is hoped that the findings and simulation results will demonstrate that the proposed multi-sensor fusion structure minimizes the root mean square error (RMSE) compared to single-sensor usage and ensures system redundancy against sensor failures.
+
+\vspace{1cm}
+\noindent \textbf{Keywords:} Autonomous Vehicles, Sensor Fusion, Kalman Filter, EKF, UKF, ROS 2, Localization.

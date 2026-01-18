@@ -6,9 +6,9 @@ Bu tez çalışmasında (Bitirme Projesi I), GPS sinyallerinin erişilemez oldu�
 \section{Elde Edilen Kazanımlar}
 Yapılan literatür taraması, sistem modellemesi ve yöntem analizleri sonucunda şu çıktılara ulaşılmıştır:
 \begin{enumerate}
-    \item **Mimari Kararı:** Merkezi bir başarısızlık noktasından kaçınmak ve sistemin beka kabiliyetini artırmak (savunma sanayi gereksinimleri) amacıyla **Dağıtık (Decentralized)** mimari seçilmiştir.
-    \item **Algoritma Seçimi:** Araçların ani manevra yapabileceği senaryolarda, lineerleştirme hatalarını minimize etmek için EKF yerine türevsiz **Sezgisel Kalman Filtresi (UKF)** yöntemi benimsenmiştir.
-    \item **Veri Tutarlılığı:** Dağıtık sistemlerdeki "veri tekrarı" (data incest) problemini çözmek için sisteme **Kovaryans Kesişimi (Covariance Intersection)** algoritması entegre edilmiştir.
+    \item Mimari Kararı: Merkezi bir başarısızlık noktasından kaçınmak ve sistemin beka kabiliyetini artırmak (savunma sanayi gereksinimleri) amacıyla Dağıtık (Decentralized) mimari seçilmiştir.
+    \item Algoritma Seçimi: Araçların ani manevra yapabileceği senaryolarda, lineerleştirme hatalarını minimize etmek için EKF yerine türevsiz Sezgisel Kalman Filtresi (UKF) yöntemi benimsenmiştir.
+    \item Veri Tutarlılığı: Dağıtık sistemlerdeki "veri tekrarı" (data incest) problemini çözmek için sisteme Kovaryans Kesişimi (Covariance Intersection) algoritması entegre edilmiştir.
 \end{enumerate}
 
 \section{Gelecek Çalışma Planı (Bitirme Projesi II)}
@@ -16,9 +16,9 @@ Projenin ikinci aşamasında, bu dönem kurgulanan matematiksel modelin gerçek 
 
 \subsection{Simülasyon Ortamı ve Araçlar}
 \begin{itemize}
-    \item **Yazılım Altyapısı:** Simülasyon, robotik uygulamalarda endüstri standardı olan **ROS 2 (Humble/Foxy)** üzerinde geliştirilecektir.
-    \item **Fizik Motoru:** Araçların dinamiğini ve sensör verilerini simüle etmek için **Gazebo** ortamı kullanılacaktır.
-    \item **Robot Platformu:** Hazır sensör paketlerine (Lidar, IMU, Odometre) sahip olması nedeniyle **TurtleBot3** modeli tercih edilmiştir.
+    \item Yazılım Altyapısı: Simülasyon, robotik uygulamalarda endüstri standardı olan ROS 2 (Humble/Foxy) üzerinde geliştirilecektir.
+    \item Fizik Motoru: Araçların dinamiğini ve sensör verilerini simüle etmek için Gazebo ortamı kullanılacaktır.
+    \item Robot Platformu: Hazır sensör paketlerine (Lidar, IMU, Odometre) sahip olması nedeniyle TurtleBot3 modeli tercih edilmiştir.
 \end{itemize}
 
 \subsection{Aşamalı Geliştirme Stratejisi}

@@ -14,7 +14,7 @@ Bir aracın $k$ anındaki durumu (state) $x_k$ vektörü ile ifade edilir. Bu ve
 Amaç, gürültülü sensör verilerini kullanarak bu $x_k$ durumunu ve belirsizliğini (kovaryans matrisi $P_k$) en doğru şekilde tahmin etmektir.
 
 \section{Kullanılan Sensör Teknolojileri}
-Otonom araçların konumlandırma mimarisi, farklı karakteristiklere sahip sensörlerin birleşimi üzerine kuruludur. Bu sensörler literatürde genellikle ölçüm kaynaklarına göre **Öz-Hareket (Proprioceptive)** ve **Çevre (Exteroceptive)** algılayıcılar olmak üzere iki ana kategoriye ayrılır.
+Otonom araçların konumlandırma mimarisi, farklı karakteristiklere sahip sensörlerin birleşimi üzerine kuruludur. Bu sensörler literatürde genellikle ölçüm kaynaklarına göre Öz-Hareket (Proprioceptive) ve Çevre (Exteroceptive) algılayıcılar olmak üzere iki ana kategoriye ayrılır.
 
 \subsection{Öz-Hareket Algılayıcıları (Proprioceptive)}
 Bu sensör grubu, aracın dış dünyadan bağımsız olarak kendi iç durumundaki (hız, ivme, dönüş) değişimleri ölçer. Sistemin "Kestirim/Tahmin" (Prediction) basamağında kullanılırlar.
@@ -49,12 +49,12 @@ LiDAR, lazer darbeleri kullanarak çevredeki nesnelerin mesafesini ve açısın�
 \subsubsection{GNSS (Global Navigation Satellite System)}
 GNSS (GPS, GLONASS, Galileo vb.), uydulardan gelen zaman damgalı sinyallerle dünya üzerindeki mutlak konumu belirler.
 \begin{itemize}
-    \item \textbf{Proje Kapsamındaki Yeri:} Açık alanlarda referans (Ground Truth) olarak kullanılabilir. Ancak bu tez çalışması, **"GNSS-Denied" (GPS Erişiminin Olmadığı)** senaryolar üzerine kurgulanmıştır.
+    \item \textbf{Proje Kapsamındaki Yeri:} Açık alanlarda referans (Ground Truth) olarak kullanılabilir. Ancak bu tez çalışması, "GNSS-Denied" (GPS Erişiminin Olmadığı) senaryolar üzerine kurgulanmıştır.
     \item \textbf{Kısıtlar:} Tüneller, sık ormanlar, şehir kanyonları (yüksek binalar) veya elektronik harp (jamming) durumlarında GNSS sinyalleri kesilebilir veya "Multipath" (çoklu yol) etkisiyle hatalı sonuç verebilir. Bu nedenle, önerilen işbirlikli sistem GNSS verisine güvenmeyecek şekilde tasarlanmıştır.
 \end{itemize}
 
 \section{Sensör Füzyonu ve Kalman Filtresi}
-Farklı karakteristikteki sensör verilerini (Örn: Hızlı ama hatalı IMU verisi ile yavaş ama kesin LiDAR verisi) birleştirmek için **Kalman Filtresi** kullanılır. Algoritma, sonsuz bir döngü içinde çalışan iki temel adımdan oluşur:
+Farklı karakteristikteki sensör verilerini (Örn: Hızlı ama hatalı IMU verisi ile yavaş ama kesin LiDAR verisi) birleştirmek için Kalman Filtresi kullanılır. Algoritma, sonsuz bir döngü içinde çalışan iki temel adımdan oluşur:
 
 \subsection{Tahmin (Prediction / Time Update)}
 Bu adımda, aracın fiziksel hareket modeli ve IMU verileri kullanılarak bir sonraki konum "tahmin" edilir.

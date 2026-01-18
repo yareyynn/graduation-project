@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2026.1.8)  16 JAN 2026 19:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.12.27)  18 JAN 2026 19:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**/Users/yarensakarya/Desktop/bitirme/main.tex
-(/Users/yarensakarya/Desktop/bitirme/main.tex
+**/Users/urmet/Documents/graduation-project/main.tex
+(/Users/urmet/Documents/graduation-project/main.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (/usr/local/texlive/2025/texmf-dist/tex/latex/base/report.cls
@@ -330,7 +330,7 @@ File: T1Crlt-OsF.fd 2022/10/05 (autoinst) Font definitions for T1/Crlt-OsF.
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count304
 \l__pdf_internal_box=\box55
-) (./main.aux (./kapak.aux) (./tanimlar.aux) (./bolumler/giris.aux) (./bolumler/tekil_konum.aux) (./bolumler/isbirlikli_konum.aux) (./bolumler/literatur_yontem.aux) (./bolumler/sonuc_plan.aux))
+) (./main.aux (./kapak.aux) (./onyazilar/ozet.aux) (./onyazilar/onsoz.aux) (./tanimlar.aux) (./bolumler/giris.aux) (./bolumler/tekil_konum.aux) (./bolumler/isbirlikli_konum.aux) (./bolumler/literatur_yontem.aux) (./bolumler/sonuc_plan.aux))
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
@@ -444,7 +444,7 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 \openout2 = `kapak.aux'.
 
 (./kapak.tex
-<İTÜ_logo.png, id=140, 602.25pt x 602.25pt>
+<İTÜ_logo.png, id=152, 602.25pt x 602.25pt>
 File: İTÜ_logo.png Graphic file (type png)
 <use İTÜ_logo.png>
 Package pdftex.def Info: İTÜ_logo.png  used on input line 6.
@@ -454,16 +454,19 @@ Package pdftex.def Info: İTÜ_logo.png  used on input line 6.
 [1
 
 
-{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/carlito/crlt_hsqwq5.enc} <./İTÜ_logo.png>]) (./main.toc (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+{/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map}{/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/carlito/crlt_hsqwq5.enc} <./İTÜ_logo.png>])
+\openout2 = `onyazilar/ozet.aux'.
+
+ (./onyazilar/ozet.tex (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 9.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 4.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 9.
  (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb.cfg
@@ -474,8 +477,29 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.33 ...n / Update) Adımı}{16}{subsection.4.3.3}
-                                                  % [1
+l.14 \newpage
+              [1
+
+
+
+
+])
+
+[2
+
+]
+\openout2 = `onyazilar/onsoz.aux'.
+
+ (./onyazilar/onsoz.tex)
+
+[3
+
+
+
+
+] (./main.toc
+
+[4
 
 
 
@@ -485,7 +509,7 @@ l.33 ...n / Update) Adımı}{16}{subsection.4.3.3}
 
 
 
-[2]
+[5]
 \openout2 = `tanimlar.aux'.
 
  (./tanimlar.tex
@@ -499,69 +523,48 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             See the microtype manual for details.
 
 
-[3
+[6
 
 
 {/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/carlito/crlt_j4hweq.enc}]
 
-[4])
+[7])
 \openout2 = `bolumler/giris.aux'.
 
  (./bolumler/giris.tex
 B\"ol\"um 1.
 
 
-[5
+[8
 
 
 
 
 ])
 
-[6]
+[9]
 \openout2 = `bolumler/tekil_konum.aux'.
 
  (./bolumler/tekil_konum.tex
 B\"ol\"um 2.
 
 
-[7
+[10
 
 
 
 
 ]
 
-[8]
+[11]
 
-[9])
+[12])
 
-[10]
+[13]
 \openout2 = `bolumler/isbirlikli_konum.aux'.
 
  (./bolumler/isbirlikli_konum.tex
 B\"ol\"um 3.
-
-
-[11
-
-
-
-
-]
-
-[12]
-Overfull \hbox (60.25699pt too wide) in paragraph at lines 63--71
- [][] 
- []
-
-)
-
-[13]
-\openout2 = `bolumler/literatur_yontem.aux'.
-
- (./bolumler/literatur_yontem.tex
-B\"ol\"um 4.
 
 
 [14
@@ -572,50 +575,71 @@ B\"ol\"um 4.
 ]
 
 [15]
+Overfull \hbox (60.25699pt too wide) in paragraph at lines 63--71
+ [][] 
+ []
 
-[16])
+)
 
-[17]
+[16]
+\openout2 = `bolumler/literatur_yontem.aux'.
+
+ (./bolumler/literatur_yontem.tex
+B\"ol\"um 4.
+
+
+[17
+
+
+
+
+]
+
+[18]
+
+[19])
+
+[20]
 \openout2 = `bolumler/sonuc_plan.aux'.
 
  (./bolumler/sonuc_plan.tex
 B\"ol\"um 5.
 
 
-[18
+[21
 
 
 
 
 ])
 
-[19] (./main.bbl)
+[22] (./main.bbl)
 
-[20
+[23
 
 
 
-] (./main.aux (./kapak.aux) (./tanimlar.aux) (./bolumler/giris.aux) (./bolumler/tekil_konum.aux) (./bolumler/isbirlikli_konum.aux) (./bolumler/literatur_yontem.aux) (./bolumler/sonuc_plan.aux))
+] (./main.aux (./kapak.aux) (./onyazilar/ozet.aux) (./onyazilar/onsoz.aux) (./tanimlar.aux) (./bolumler/giris.aux) (./bolumler/tekil_konum.aux) (./bolumler/isbirlikli_konum.aux) (./bolumler/literatur_yontem.aux) (./bolumler/sonuc_plan.aux))
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 224787189569133B3A53BE087D731C31;7620.
+(rerunfilecheck)             Checksum: 118DECE765495558DE9BA6E0E6B1DF2C;7849.
  ) 
 Here is how much of TeX's memory you used:
- 15056 strings out of 473190
- 242685 string characters out of 5715801
- 670036 words of memory out of 5000000
- 37688 multiletter control sequences out of 15000+600000
- 681826 words of font info for 229 fonts, out of 8000000 for 9000
+ 15121 strings out of 473190
+ 244391 string characters out of 5715799
+ 670752 words of memory out of 5000000
+ 37729 multiletter control sequences out of 15000+600000
+ 682271 words of font info for 231 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,1037b,626s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,1043b,629s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/google/carlito/Crlt-Bold.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/google/carlito/Crlt-Italic.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/google/carlito/Crlt-Regular.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (21 pages, 273151 bytes).
+Output written on main.pdf (24 pages, 281714 bytes).
 PDF statistics:
- 418 PDF objects out of 1000 (max. 8388607)
- 368 compressed objects within 4 object streams
- 107 named destinations out of 1000 (max. 500000)
- 47382 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 447 PDF objects out of 1000 (max. 8388607)
+ 394 compressed objects within 4 object streams
+ 113 named destinations out of 1000 (max. 500000)
+ 47406 words of extra memory for PDF output out of 51595 (max. 10000000)
 

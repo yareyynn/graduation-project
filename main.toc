@@ -1,39 +1,42 @@
 \babel@toc {turkish}{}\relax 
-\contentsline {chapter}{Simgeler ve Kısaltmalar}{3}{chapter*.2}%
-\contentsline {chapter}{\numberline {1}Giriş}{5}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Çalışmanın Önemi ve Gerekliliği}{5}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Problem Tanımı}{6}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Tezin Amacı}{6}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Tezin Kapsamı}{6}{section.1.4}%
-\contentsline {chapter}{\numberline {2}Otonom Araçlarda Konumlandırma Temelleri}{7}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Olasılıksal Robotik ve Durum Kestirimi}{7}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Kullanılan Sensör Teknolojileri}{7}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Öz-Hareket Algılayıcıları (Proprioceptive)}{8}{subsection.2.2.1}%
-\contentsline {subsubsection}{Atalet Ölçüm Birimi (IMU)}{8}{section*.5}%
-\contentsline {subsubsection}{Tekerlek Odometresi (Wheel Odometry)}{8}{section*.6}%
-\contentsline {subsection}{\numberline {2.2.2}Çevre Algılayıcıları (Exteroceptive)}{8}{subsection.2.2.2}%
-\contentsline {subsubsection}{LiDAR (Light Detection and Ranging)}{9}{section*.7}%
-\contentsline {subsubsection}{GNSS (Global Navigation Satellite System)}{9}{section*.8}%
-\contentsline {section}{\numberline {2.3}Sensör Füzyonu ve Kalman Filtresi}{9}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Tahmin (Prediction / Time Update)}{9}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Düzeltme (Correction / Measurement Update)}{10}{subsection.2.3.2}%
-\contentsline {chapter}{\numberline {3}Matematiksel Model ve Sistem Mimarisi}{11}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Problem Tanımı ve Varsayımlar}{11}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Araç Kinematik Modeli}{11}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Göreceli Ölçüm Modeli}{12}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Dağıtık İletişim ve Veri Paylaşım Protokolü}{12}{section.3.4}%
-\contentsline {chapter}{\numberline {4}Literatür Taraması ve Yöntem Seçimi}{14}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Literatür Taraması}{14}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}İşbirlikli Konumlandırma (Cooperative Localization)}{14}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Merkezi ve Dağıtık Mimariler}{15}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}Yöntem Seçimi: Neden UKF?}{15}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Matematiksel Model: Sezgisel Kalman Filtresi (UKF)}{15}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Sigma Noktalarının Seçimi}{15}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Tahmin (Prediction) Adımı}{16}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Düzeltme (Correction / Update) Adımı}{16}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Dağıtık Veri Füzyonu: Kovaryans Kesişimi}{17}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Sonuç ve Gelecek Çalışma Planı}{18}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Elde Edilen Kazanımlar}{18}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Gelecek Çalışma Planı (Bitirme Projesi II)}{18}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}Simülasyon Ortamı ve Araçlar}{19}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Aşamalı Geliştirme Stratejisi}{19}{subsection.5.2.2}%
+\contentsline {chapter}{ÖZET}{1}{chapter*.1}%
+\contentsline {chapter}{ABSTRACT}{2}{chapter*.2}%
+\contentsline {chapter}{ÖNSÖZ}{3}{chapter*.3}%
+\contentsline {chapter}{Simgeler ve Kısaltmalar}{6}{chapter*.5}%
+\contentsline {chapter}{\numberline {1}Giriş}{8}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Çalışmanın Önemi ve Gerekliliği}{8}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Problem Tanımı}{9}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Tezin Amacı}{9}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Tezin Kapsamı}{9}{section.1.4}%
+\contentsline {chapter}{\numberline {2}Otonom Araçlarda Konumlandırma Temelleri}{10}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Olasılıksal Robotik ve Durum Kestirimi}{10}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Kullanılan Sensör Teknolojileri}{10}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Öz-Hareket Algılayıcıları (Proprioceptive)}{11}{subsection.2.2.1}%
+\contentsline {subsubsection}{Atalet Ölçüm Birimi (IMU)}{11}{section*.8}%
+\contentsline {subsubsection}{Tekerlek Odometresi (Wheel Odometry)}{11}{section*.9}%
+\contentsline {subsection}{\numberline {2.2.2}Çevre Algılayıcıları (Exteroceptive)}{11}{subsection.2.2.2}%
+\contentsline {subsubsection}{LiDAR (Light Detection and Ranging)}{12}{section*.10}%
+\contentsline {subsubsection}{GNSS (Global Navigation Satellite System)}{12}{section*.11}%
+\contentsline {section}{\numberline {2.3}Sensör Füzyonu ve Kalman Filtresi}{12}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Tahmin (Prediction / Time Update)}{12}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Düzeltme (Correction / Measurement Update)}{13}{subsection.2.3.2}%
+\contentsline {chapter}{\numberline {3}Matematiksel Model ve Sistem Mimarisi}{14}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Problem Tanımı ve Varsayımlar}{14}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Araç Kinematik Modeli}{14}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Göreceli Ölçüm Modeli}{15}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Dağıtık İletişim ve Veri Paylaşım Protokolü}{15}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Literatür Taraması ve Yöntem Seçimi}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Literatür Taraması}{17}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}İşbirlikli Konumlandırma (Cooperative Localization)}{17}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Merkezi ve Dağıtık Mimariler}{18}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Yöntem Seçimi: Neden UKF?}{18}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Matematiksel Model: Sezgisel Kalman Filtresi (UKF)}{18}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Sigma Noktalarının Seçimi}{18}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Tahmin (Prediction) Adımı}{19}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Düzeltme (Correction / Update) Adımı}{19}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Dağıtık Veri Füzyonu: Kovaryans Kesişimi}{20}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Sonuç ve Gelecek Çalışma Planı}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Elde Edilen Kazanımlar}{21}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Gelecek Çalışma Planı (Bitirme Projesi II)}{21}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Simülasyon Ortamı ve Araçlar}{22}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Aşamalı Geliştirme Stratejisi}{22}{subsection.5.2.2}%
