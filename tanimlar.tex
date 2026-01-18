@@ -1,0 +1,31 @@
+\chapter*{Simgeler ve Kısaltmalar}
+\addcontentsline{toc}{chapter}{Simgeler ve Kısaltmalar}
+
+\section*{Kısaltmalar}
+\begin{itemize}
+    \item \textbf{CL (Cooperative Localization):} İşbirlikli Konumlandırma. Birden fazla aracın birbirleriyle haberleşerek konum belirsizliğini azalttığı yöntem.
+    \item \textbf{GNSS (Global Navigation Satellite System):} Küresel Konumlandırma Sistemi. GPS, GLONASS, Galileo gibi uydu tabanlı konum belirleme sistemlerinin genel adı.
+    \item \textbf{GPS (Global Positioning System):} Küresel Konumlama Sistemi.
+    \item \textbf{IMU (Inertial Measurement Unit):} Atalet Ölçüm Birimi. Aracın ivmesini ve açısal hızını ölçen, öz-hareket (proprioceptive) sensörü.
+    \item \textbf{LiDAR (Light Detection and Ranging):} Lazer darbeleri kullanarak nesnelerin mesafesini ölçen ve 3B haritalama sağlayan sensör teknolojisi.
+    \item \textbf{V2V (Vehicle-to-Vehicle):} Araçtan Araca Haberleşme. Araçların hız, konum ve yönelim bilgilerini birbirleriyle paylaştığı kablosuz iletişim ağı.
+    \item \textbf{SLAM (Simultaneous Localization and Mapping):} Eş Zamanlı Konumlandırma ve Haritalama. Robotun bilinmeyen bir ortamda harita oluştururken aynı anda o haritada konumunu bulması işlemi.
+    \item \textbf{EKF (Extended Kalman Filter):} Genişletilmiş Kalman Filtresi. Doğrusal olmayan sistemler için kullanılan, Taylor serisi açılımı ile doğrusallaştırma yapan durum kestirim algoritması.
+    \item \textbf{UKF (Unscented Kalman Filter):} Sezgisel Kalman Filtresi. Doğrusal olmayan dönüşümler için "Unscented Transform" yöntemini kullanan, türev (Jacobian) hesabı gerektirmeyen filtre yapısı.
+    \item \textbf{RMSE (Root Mean Square Error):} Kök Ortalama Kare Hata. Tahmin edilen konum ile gerçek konum arasındaki hatanın standart sapma ölçütü.
+\end{itemize}
+
+\section*{Simgeler}
+\begin{itemize}
+    \item \textbf{$x_k$:} $k$ anındaki Durum Vektörü (Konum ve Yönelim)
+    \item \textbf{$P_k$:} Hata Kovaryans Matrisi (Belirsizlik Ölçüsü)
+    \item \textbf{$F_k$:} Durum Geçiş Matrisi (State Transition Matrix)
+    \item \textbf{$H_k$:} Ölçüm Matrisi (Measurement Matrix)
+    \item \textbf{$K_k$:} Kalman Kazancı (Kalman Gain)
+    \item \textbf{$z_k$:} Ölçüm Vektörü (Sensörlerden gelen veri)
+    \item \textbf{$Q$:} Süreç Gürültü Kovaryansı (Process Noise Covariance)
+    \item \textbf{$R$:} Ölçüm Gürültü Kovaryansı (Measurement Noise Covariance)
+    \item \textbf{$\Delta x, \Delta y$:} İki araç arasındaki göreceli konum farkı
+\end{itemize}
+
+\newpage

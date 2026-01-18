@@ -1,0 +1,28 @@
+\begin{thebibliography}{1}
+
+\bibitem{slam2016}
+C.~Cadena, L.~Carlone, {\em et~al.}, ``A state-of-the-art survey on simultaneous localization and mapping (slam),'' {\em IEEE Transactions on Robotics}, 2016.
+
+\bibitem{simon2006}
+D.~Simon, {\em Optimal State Estimation: Kalman, H Infinity, and Nonlinear Approaches}.
+\newblock John Wiley \& Sons, 2006.
+
+\bibitem{wang2018}
+Z.~Wang, W.~Chen, {\em et~al.}, ``Cooperative localization for autonomous vehicles using v2v and v2i communications,'' {\em IEEE Internet of Things Journal}, 2018.
+
+\bibitem{hery2021consistent}
+E.~H{\'e}ry {\em et~al.}, ``Consistent decentralized cooperative localization for autonomous vehicles using covariance intersection,'' {\em Journal of Field Robotics}, vol.~38, no.~5, 2021.
+
+\bibitem{li2023lidar}
+X.~Li {\em et~al.}, ``Lidar slam based multivehicle cooperative localization using iterated split cif,'' {\em IEEE Sensors Journal}, 2023.
+
+\bibitem{tits2019}
+M.~Brambilla {\em et~al.}, ``Cooperative localization in intelligent transportation systems,'' {\em IEEE Transactions on Intelligent Transportation Systems}, 2019.
+
+\bibitem{electronics2023}
+J.~Oliveros {\em et~al.}, ``Advances in cooperative localization for connected vehicles,'' {\em Electronics}, vol.~12, no.~4945, 2023.
+
+\bibitem{carli2014}
+R.~Carli, J.~Sijs, {\em et~al.}, ``Distributed cooperative localization in wireless sensor networks: A survey,'' {\em EURASIP Journal on Advances in Signal Processing}, 2014.
+
+\end{thebibliography}

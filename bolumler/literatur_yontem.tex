@@ -1,0 +1,92 @@
+\chapter{Literatür Taraması ve Yöntem Seçimi}
+\label{ch:literatur_yontem}
+
+Otonom araçların güvenli seyrüseferi için hassas konumlandırma hayati önem taşır. Bu bölümde, konuya dair literatürdeki temel çalışmalar incelenmiş, mevcut yöntemlerin avantaj ve dezavantajları karşılaştırılmış ve tez kapsamında kullanılacak **Sezgisel Kalman Filtresi (UKF)** ile **Dağıtık Veri Füzyonu** mimarisinin teorik dayanakları sunulmuştur.
+
+\section{Literatür Taraması}
+
+Otonom araçlarda konumlandırma problemi, uzun yıllar boyunca tekil araçların kendi sensör verilerini işlemesi (SLAM) üzerine yoğunlaşmıştır. Cadena ve ark. (2016), SLAM teknolojilerinin geldiği son noktayı özetledikleri çalışmalarında, tekil sensörlerin özellikle dinamik ve karmaşık ortamlarda (şehir içi, tünel vb.) yetersiz kalabildiğini ve "uzun süreli otonomi" için daha gürbüz (robust) çözümlere ihtiyaç duyulduğunu belirtmişlerdir \cite{slam2016}.
+
+\subsection{İşbirlikli Konumlandırma (Cooperative Localization)}
+Tekil sistemlerin kısıtlarını aşmak için literatürde "İşbirlikli Konumlandırma" kavramı öne çıkmıştır. Wang ve ark. (2018), Araçtan Araca (V2V) ve Araçtan Altyapıya (V2I) haberleşme teknolojilerini kullanarak, GPS erişiminin kısıtlı olduğu durumlarda bile araçların birbirlerinden destek alarak konum hatalarını minimize edebileceğini göstermiştir \cite{wang2018}. Benzer şekilde Brambilla ve ark. (2019), Akıllı Ulaşım Sistemleri (ITS) kapsamında işbirlikli yöntemlerin trafik güvenliğine etkilerini incelemiş, ancak iletişim gecikmeleri ve bant genişliği sorunlarına dikkat çekmiştir \cite{tits2019}.
+
+Oliveros ve ark. (2023) ise bağlantılı araç teknolojilerindeki güncel gelişmeleri derledikleri çalışmalarında, modern sensör füzyon tekniklerinin (LiDAR, Radar) işbirlikli sistemlere entegrasyonunun önemini vurgulamışlardır \cite{electronics2023}.
+
+\subsection{Merkezi ve Dağıtık Mimariler}
+Çoklu araç sistemlerinde verinin nerede işleneceği kritik bir tasarım kararıdır. Carli ve ark. (2014), kablosuz sensör ağlarında dağıtık konumlandırma üzerine yaptıkları kapsamlı taramada, merkezi sistemlerin "Tekil Başarısızlık Noktası" (Single Point of Failure) riski taşıdığını, dağıtık (distributed) mimarilerin ise ölçeklenebilirlik ve beka kabiliyeti açısından üstün olduğunu ortaya koymuştur \cite{carli2014}.
+
+Ancak dağıtık sistemlerin en büyük problemi, araçların sürekli birbirleriyle veri paylaşması sonucu oluşan "Veri Tekrarı" (Data Incest) sorunudur. Héry ve ark. (2021), bu sorunu çözmek için dağıtık sistemlerde **Kovaryans Kesişimi (Covariance Intersection - CI)** yönteminin kullanılmasını önermiş ve bu yöntemin tutarlı (consistent) bir durum kestirimi sağladığını kanıtlamıştır \cite{hery2021consistent}. Yakın tarihli bir çalışmada Li ve ark. (2023), LiDAR tabanlı SLAM sistemlerinde "Split CI" yöntemini kullanarak, çoklu araçların harita birleştirme ve konumlandırma performansını deneysel olarak doğrulamıştır \cite{li2023lidar}.
+
+\section{Yöntem Seçimi: Neden UKF?}
+
+Literatürdeki yaygın yaklaşım Genişletilmiş Kalman Filtresi (EKF) olsa da, bu çalışmada Sezgisel Kalman Filtresi (UKF) tercih edilmiştir.
+Dan Simon (2006), "Optimal State Estimation" adlı temel eserinde, EKF'nin lineerleştirme sırasında Jacobian matrisleri (kısmi türevler) kullandığını ve bu işlemin Taylor serisi açılımındaki yüksek dereceli terimlerin atılmasına ("kesme hataları") neden olduğunu belirtmiştir \cite{simon2006}.
+
+Özellikle araçların ani manevra yaptığı doğrusal olmayan (non-linear) durumlarda, UKF türev almadan olasılık dağılımını örneklediği için EKF'ye kıyasla daha kararlı ve doğru sonuçlar üretmektedir. Bu nedenle tez kapsamında UKF yapısı benimsenmiştir.
+
+\section{Matematiksel Model: Sezgisel Kalman Filtresi (UKF)}
+
+UKF algoritması, doğrusal olmayan fonksiyonu lineerleştirmek yerine, durum dağılımını temsil eden örnek noktalar ("Sigma Noktaları") seçerek çalışır. Algoritma temel olarak üç aşamadan oluşur: Sigma noktalarının seçimi, Tahmin (Prediction) ve Düzeltme (Update/Correction).
+
+\subsection{Sigma Noktalarının Seçimi}
+UKF, mevcut durum ortalaması ($\hat{x}_{k-1}$) ve kovaryansı ($P_{k-1}$) etrafında simetrik olarak dağılan sigma noktalarını ($\chi$) hesaplar. $L$ durum vektörünün boyutu olmak üzere, $2L+1$ adet nokta şu şekilde seçilir:
+
+\begin{equation}
+    \chi_0 = \hat{x}_{k-1}
+\end{equation}
+\begin{equation}
+    \chi_i = \hat{x}_{k-1} + (\sqrt{(L+\lambda)P_{k-1}})_i, \quad i=1,\dots,L
+\end{equation}
+\begin{equation}
+    \chi_i = \hat{x}_{k-1} - (\sqrt{(L+\lambda)P_{k-1}})_{i-L}, \quad i=L+1,\dots,2L
+\end{equation}
+
+Burada $\lambda$, noktaların yayılımını belirleyen ölçekleme parametresidir.
+
+\subsection{Tahmin (Prediction) Adımı}
+Seçilen sigma noktaları, aracın doğrusal olmayan hareket modelinden ($f$) geçirilerek bir sonraki adıma taşınır. Bu adımda sistemin "önsel" (a priori) durumu tahmin edilir:
+
+\begin{equation}
+    \chi_{k|k-1}^{(i)} = f(\chi_{k-1}^{(i)}, u_k)
+\end{equation}
+
+Daha sonra, bu yeni noktaların ağırlıklı ortalaması alınarak tahmini durum ($\hat{x}_{k|k-1}$) ve tahmini kovaryans ($P_{k|k-1}$) hesaplanır:
+
+\begin{equation}
+    \hat{x}_{k|k-1} = \sum_{i=0}^{2L} W_i^{(m)} \chi_{k|k-1}^{(i)}
+\end{equation}
+\begin{equation}
+    P_{k|k-1} = \sum_{i=0}^{2L} W_i^{(c)} [\chi_{k|k-1}^{(i)} - \hat{x}_{k|k-1}][\chi_{k|k-1}^{(i)} - \hat{x}_{k|k-1}]^T + Q
+\end{equation}
+
+Burada $Q$, süreç gürültüsünü; $W_i$ ise ağırlık katsayılarını temsil eder.
+
+\subsection{Düzeltme (Correction / Update) Adımı}
+Dış sensörlerden (Lidar/V2V) veri geldiğinde, tahmin edilen sigma noktaları ölçüm modelinden ($h$) geçirilerek beklenen ölçüm ($\mathcal{Z}$) hesaplanır:
+
+\begin{equation}
+    \mathcal{Z}_k^{(i)} = h(\chi_{k|k-1}^{(i)})
+\end{equation}
+
+Gerçek ölçüm ($z_k$) ile beklenen ölçüm ($\hat{z}_k$) arasındaki fark (innovation) ve Kalman Kazancı ($K$) kullanılarak son durum kestirimi yapılır:
+
+\begin{equation}
+    \hat{x}_k = \hat{x}_{k|k-1} + K (z_k - \hat{z}_k)
+\end{equation}
+\begin{equation}
+    P_k = P_{k|k-1} - K P_{zz} K^T
+\end{equation}
+
+Bu adım sayesinde, sensör verisi ile matematiksel model birleştirilerek hatası minimize edilmiş nihai konum elde edilir \cite{simon2006}.
+
+\section{Dağıtık Veri Füzyonu: Kovaryans Kesişimi}
+Dağıtık mimaride araçların birbirlerinden aldıkları verileri birleştirirken tutarlılığı sağlamak (veri tekrarını önlemek) için Héry ve ark. (2021) tarafından önerilen Kovaryans Kesişimi (CI) denklemleri kullanılır \cite{hery2021consistent}:
+
+\begin{equation}
+    P_{CI}^{-1} = \omega P_A^{-1} + (1-\omega) P_B^{-1}
+\end{equation}
+\begin{equation}
+    \hat{x}_{CI} = P_{CI} (\omega P_A^{-1} \hat{x}_A + (1-\omega) P_B^{-1} \hat{x}_B)
+\end{equation}
+
+Burada $\omega \in [0, 1]$ parametresi, füzyon sonucundaki belirsizliği ($P_{CI}$) minimize edecek şekilde her adımda optimize edilir.

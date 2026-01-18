@@ -1,0 +1,41 @@
+\chapter{Sonuç ve Gelecek Çalışma Planı}
+\label{ch:sonuc}
+
+Bu tez çalışmasında (Bitirme Projesi I), GPS sinyallerinin erişilemez olduğu veya güvenilmez hale geldiği durumlarda, çoklu otonom araç sürülerinin işbirlikli olarak konumlarını tespit edebilmesi için gerekli teorik altyapı oluşturulmuştur.
+
+\section{Elde Edilen Kazanımlar}
+Yapılan literatür taraması, sistem modellemesi ve yöntem analizleri sonucunda şu çıktılara ulaşılmıştır:
+\begin{enumerate}
+    \item **Mimari Kararı:** Merkezi bir başarısızlık noktasından kaçınmak ve sistemin beka kabiliyetini artırmak (savunma sanayi gereksinimleri) amacıyla **Dağıtık (Decentralized)** mimari seçilmiştir.
+    \item **Algoritma Seçimi:** Araçların ani manevra yapabileceği senaryolarda, lineerleştirme hatalarını minimize etmek için EKF yerine türevsiz **Sezgisel Kalman Filtresi (UKF)** yöntemi benimsenmiştir.
+    \item **Veri Tutarlılığı:** Dağıtık sistemlerdeki "veri tekrarı" (data incest) problemini çözmek için sisteme **Kovaryans Kesişimi (Covariance Intersection)** algoritması entegre edilmiştir.
+\end{enumerate}
+
+\section{Gelecek Çalışma Planı (Bitirme Projesi II)}
+Projenin ikinci aşamasında, bu dönem kurgulanan matematiksel modelin gerçek zamanlı simülasyon ortamında doğrulanması hedeflenmektedir. Geliştirme süreci, karmaşıklığın kademeli olarak artırıldığı (incremental) bir yol haritası izleyecektir.
+
+\subsection{Simülasyon Ortamı ve Araçlar}
+\begin{itemize}
+    \item **Yazılım Altyapısı:** Simülasyon, robotik uygulamalarda endüstri standardı olan **ROS 2 (Humble/Foxy)** üzerinde geliştirilecektir.
+    \item **Fizik Motoru:** Araçların dinamiğini ve sensör verilerini simüle etmek için **Gazebo** ortamı kullanılacaktır.
+    \item **Robot Platformu:** Hazır sensör paketlerine (Lidar, IMU, Odometre) sahip olması nedeniyle **TurtleBot3** modeli tercih edilmiştir.
+\end{itemize}
+
+\subsection{Aşamalı Geliştirme Stratejisi}
+Yazılım geliştirme sürecinde hataların izole edilebilmesi için şu sıralama izlenecektir:
+
+\begin{enumerate}
+    \item \textbf{Aşama 1: İdeal Ortamda Doğrulama (Gürültüsüz):}
+    İlk aşamada simülasyon gürültüsü kapatılarak, tekil aracın hareket denklemlerinin ve UKF tahmin (prediction) bloğunun kodlaması doğrulanacaktır. Amaç, simülasyon verisi ile algoritma çıktısının birebir örtüştüğünü görmektir.
+    
+    \item \textbf{Aşama 2: Gürültü Altında Tekil Filtreleme:}
+    Sensörlere yapay Gauss gürültüsü (Gaussian Noise) eklenecektir. UKF algoritmasının bu gürültüyü ne kadar filtreleyebildiği, "Ground Truth" (Gerçek Konum) verisi ile kıyaslanarak test edilecektir.
+    
+    \item \textbf{Aşama 3: İkili Araç ve İletişim Testi:}
+    Simülasyona ikinci bir araç eklenecektir. Araçların V2V haberleşme üzerinden birbirlerine gönderdikleri konum paketlerinin doğruluğu ve göreceli ölçüm (Mesafe/Açı) modelleri gürültüsüz ortamda test edilecektir.
+    
+    \item \textbf{Aşama 4: Tam Entegrasyon ve Stres Testi:}
+    Çoklu araç (3+) senaryosunda tüm gürültüler ve iletişim gecikmeleri aktif edilecektir. Dağıtık veri füzyonu ve Kovaryans Kesişimi algoritmalarının başarısı, sistemin toplam RMSE (Hata Kareler Ortalaması) değeri üzerinden raporlanacaktır.
+\end{enumerate}
+
+Bu strateji sayesinde, olası yazılım veya matematiksel hataların kaynağı (algoritma, sensör, iletişim) kolaylıkla tespit edilebilecektir.

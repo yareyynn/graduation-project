@@ -1,0 +1,71 @@
+\chapter{Otonom Araçlarda Konumlandırma Temelleri}
+\label{ch:tekil_konumlandirma}
+
+Otonom araçların güvenli bir şekilde hareket edebilmesi için öncelikle kendi durumlarını (konum, hız, yönelim) yüksek doğrulukla kestirmeleri gerekir. Bu bölüm, tekil bir aracın konumlandırma problemini, kullanılan sensörleri ve temel füzyon algoritmalarını ele almaktadır.
+
+\section{Olasılıksal Robotik ve Durum Kestirimi}
+Robotik sistemlerde kesinlikten söz etmek zordur; sensörler gürültülü, modeller ise hatalıdır. Bu nedenle konumlandırma problemi, deterministik bir hesaplamadan ziyade olasılıksal bir "Durum Kestirimi" (State Estimation) problemi olarak ele alınır \cite{simon2006}.
+
+Bir aracın $k$ anındaki durumu (state) $x_k$ vektörü ile ifade edilir. Bu vektör genellikle aracın 2 boyutlu düzlemdeki koordinatlarını ($x, y$) ve yönelim açısını ($\theta$) içerir:
+\begin{equation}
+    x_k = \begin{bmatrix} x_k \\ y_k \\ \theta_k \end{bmatrix}
+\end{equation}
+
+Amaç, gürültülü sensör verilerini kullanarak bu $x_k$ durumunu ve belirsizliğini (kovaryans matrisi $P_k$) en doğru şekilde tahmin etmektir.
+
+\section{Kullanılan Sensör Teknolojileri}
+Otonom araçların konumlandırma mimarisi, farklı karakteristiklere sahip sensörlerin birleşimi üzerine kuruludur. Bu sensörler literatürde genellikle ölçüm kaynaklarına göre **Öz-Hareket (Proprioceptive)** ve **Çevre (Exteroceptive)** algılayıcılar olmak üzere iki ana kategoriye ayrılır.
+
+\subsection{Öz-Hareket Algılayıcıları (Proprioceptive)}
+Bu sensör grubu, aracın dış dünyadan bağımsız olarak kendi iç durumundaki (hız, ivme, dönüş) değişimleri ölçer. Sistemin "Kestirim/Tahmin" (Prediction) basamağında kullanılırlar.
+
+\subsubsection{Atalet Ölçüm Birimi (IMU)}
+IMU, genellikle bir ivmeölçer (accelerometer) ve bir jiroskoptan (gyroscope) oluşan, aracın doğrusal ivmesini ve açısal hızını yüksek frekansta (100Hz - 1000Hz) ölçen bir sensördür.
+\begin{itemize}
+    \item \textbf{Çalışma Prensibi:} Jiroskop, aracın ağırlık merkezine göre dönüş miktarını (Yaw Rate - $\omega$) ölçerek yönelim (Heading - $\theta$) bilgisinin güncellenmesini sağlar. İvmeölçer ise hız değişimlerini takip eder.
+    \item \textbf{Hata Karakteristiği:} IMU sensörleri "Bias" (sabit kayma) ve "White Noise" (beyaz gürültü) hatalarına sahiptir. Konum hesabı için ivmenin iki kez integrali alındığından, bu küçük hatalar zamanla kümülatif olarak büyür (Drift/Sürüklenme). Bu tezde, UKF algoritması ile bu gürültülerin filtrelenmesi amaçlanmaktadır \cite{simon2006}.
+\end{itemize}
+
+\subsubsection{Tekerlek Odometresi (Wheel Odometry)}
+Odometre, tekerleklerdeki dönme miktarını (enkoderler aracılığıyla) sayarak aracın katettiği mesafeyi hesaplar.
+\begin{itemize}
+    \item \textbf{Kullanım Amacı:} Aracın yerel koordinat sistemindeki doğrusal hızını ($v$) sağlar.
+    \item \textbf{Dezavantajı:} Tekerlek kayması (slippage), bozuk zemin veya lastik çapındaki değişimler, odometre verisinin hatalı olmasına neden olabilir. Ancak kısa mesafelerde IMU'ya göre daha kararlı bir hız verisi sunar.
+\end{itemize}
+
+\subsection{Çevre Algılayıcıları (Exteroceptive)}
+Bu sensörler, aracın çevresindeki nesnelerden veya sinyal kaynaklarından veri toplayarak "Düzeltme" (Correction) işlemini gerçekleştirir.
+
+\subsubsection{LiDAR (Light Detection and Ranging)}
+LiDAR, lazer darbeleri kullanarak çevredeki nesnelerin mesafesini ve açısını yüksek hassasiyetle ölçen bir teknolojidir. Bu tez çalışmasındaki rolü kritiktir:
+\begin{itemize}
+    \item \textbf{Göreceli Konumlandırma:} GPS'in olmadığı ortamda araçlar, birbirlerini LiDAR verisi sayesinde tespit eder. Ölçüm modeli şu şekildedir:
+    \begin{equation}
+        z_{LIDAR} = \begin{bmatrix} r \\ \phi \end{bmatrix} = \begin{bmatrix} \text{Mesafe} \\ \text{Açı} \end{bmatrix} + \text{Gürültü}
+    \end{equation}
+    \item \textbf{Avantajı:} Işık koşullarından etkilenmez (karanlıkta çalışabilir) ve santimetre seviyesinde hassasiyet sağlar \cite{li2023lidar}.
+\end{itemize}
+
+\subsubsection{GNSS (Global Navigation Satellite System)}
+GNSS (GPS, GLONASS, Galileo vb.), uydulardan gelen zaman damgalı sinyallerle dünya üzerindeki mutlak konumu belirler.
+\begin{itemize}
+    \item \textbf{Proje Kapsamındaki Yeri:} Açık alanlarda referans (Ground Truth) olarak kullanılabilir. Ancak bu tez çalışması, **"GNSS-Denied" (GPS Erişiminin Olmadığı)** senaryolar üzerine kurgulanmıştır.
+    \item \textbf{Kısıtlar:} Tüneller, sık ormanlar, şehir kanyonları (yüksek binalar) veya elektronik harp (jamming) durumlarında GNSS sinyalleri kesilebilir veya "Multipath" (çoklu yol) etkisiyle hatalı sonuç verebilir. Bu nedenle, önerilen işbirlikli sistem GNSS verisine güvenmeyecek şekilde tasarlanmıştır.
+\end{itemize}
+
+\section{Sensör Füzyonu ve Kalman Filtresi}
+Farklı karakteristikteki sensör verilerini (Örn: Hızlı ama hatalı IMU verisi ile yavaş ama kesin LiDAR verisi) birleştirmek için **Kalman Filtresi** kullanılır. Algoritma, sonsuz bir döngü içinde çalışan iki temel adımdan oluşur:
+
+\subsection{Tahmin (Prediction / Time Update)}
+Bu adımda, aracın fiziksel hareket modeli ve IMU verileri kullanılarak bir sonraki konum "tahmin" edilir.
+\begin{equation}
+    \hat{x}_{k|k-1} = F_k \hat{x}_{k-1|k-1} + B_k u_k
+\end{equation}
+Burada $u_k$ kontrol girdisini (IMU verisi), $F_k$ ise durum geçiş modelini temsil eder. Bu adımda sistemin belirsizliği (kovaryans) artar.
+
+\subsection{Düzeltme (Correction / Measurement Update)}
+Bu adımda, dış sensörlerden (LiDAR veya GPS) gelen "gerçek ölçüm" ($z_k$) ile "tahmin edilen ölçüm" karşılaştırılır. Aradaki farka "Innovation" (Yenilik) denir. Kalman Kazancı ($K_k$) hesaplanarak, tahmin edilen konum bu fark oranında düzeltilir \cite{simon2006}.
+\begin{equation}
+    \hat{x}_{k|k} = \hat{x}_{k|k-1} + K_k (z_k - H_k \hat{x}_{k|k-1})
+\end{equation}
+Sonuç olarak, tek bir sensörün verebileceğinden daha doğru ve daha az gürültülü bir konum bilgisi elde edilir.

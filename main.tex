@@ -1,0 +1,40 @@
+\documentclass[12pt, a4paper]{report} 
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[turkish]{babel} 
+
+\usepackage[sfdefault]{carlito} 
+\usepackage[hidelinks]{hyperref}
+\usepackage{setspace}
+\onehalfspacing 
+
+\usepackage{microtype} 
+
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{url}
+\usepackage[numbers]{natbib}
+
+\geometry{left=3.5cm, right=2.5cm, top=3cm, bottom=3cm}
+
+\begin{document}
+
+\include{kapak}
+
+\tableofcontents    
+\newpage
+
+\include{tanimlar} 
+
+\include{bolumler/giris}
+\include{bolumler/tekil_konum}
+\include{bolumler/isbirlikli_konum}
+\include{bolumler/literatur_yontem}
+\include{bolumler/sonuc_plan}
+
+\bibliographystyle{ieeetr} 
+\bibliography{kaynakca}    
+
+\end{document}

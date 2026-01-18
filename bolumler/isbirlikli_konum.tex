@@ -1,0 +1,73 @@
+\chapter{Matematiksel Model ve Sistem Mimarisi}
+\label{ch:sistem_modeli}
+
+Bu bölümde, işbirlikli konumlandırma probleminin matematiksel altyapısı, araçların hareket kinematiği, sensör ölçüm modelleri ve önerilen dağıtık iletişim protokolü detaylandırılmıştır.
+
+\section{Problem Tanımı ve Varsayımlar}
+Tez kapsamında, GPS erişiminin olmadığı (GPS-denied) veya güvenilmez olduğu bir ortamda hareket eden $N$ adet otonom araçtan oluşan bir sürü (swarm) ele alınmıştır.
+Sistemin tutarlılığı ve uygulanabilirliği için aşağıdaki varsayımlar kabul edilmiştir:
+
+\begin{enumerate}
+    \item \textbf{Tanımlanabilirlik:} Her araç, kendisine atanan benzersiz bir kimlik (ID) numarasına sahiptir ve iletişim paketlerinde bu kimliği yayınlar.
+    \item \textbf{Eş Zamanlılık:} Araçların saatleri senkronizedir veya iletişimdeki gecikmeler zaman damgası (timestamp) ile takip edilebilir.
+    \item \textbf{Tam Bağlı Ağ (All-to-All):} İletişim menzili içerisindeki her araç, yayınlanan paketleri alabilir.
+    \item \textbf{Sabit Koordinat Çerçevesi:} Tüm araçlar göreve başlarken ortak bir yerel referans çerçevesine (Local Frame) göre hizalanmıştır.
+\end{enumerate}
+
+\section{Araç Kinematik Modeli}
+Sürüdeki her bir araç ($i$), 2 boyutlu düzlemde hareket eden diferansiyel sürüşlü (veya Ackermann manevra kabiliyetine sahip) bir robot olarak modellenmiştir. Aracın $k$ anındaki durum vektörü $x_{k}^{(i)}$, konumu ve yönelimini içerir:
+
+\begin{equation}
+    x_{k}^{(i)} = \begin{bmatrix} p_x \\ p_y \\ \theta \end{bmatrix}_k^{(i)}
+\end{equation}
+
+Aracın hareket modeli, doğrusal olmayan (non-linear) bir süreçtir. Diskret zamanlı hareket denklemleri şu şekildedir:
+
+\begin{equation}
+    x_{k+1}^{(i)} = f(x_{k}^{(i)}, u_{k}^{(i)}) + w_{k}^{(i)}
+\end{equation}
+
+Burada $u_{k}^{(i)} = [v, \omega]^T$ kontrol girdisini (doğrusal hız ve açısal hız), $w_{k}^{(i)}$ ise Gauss dağılımına sahip süreç gürültüsünü temsil eder. Açık formda yazılırsa:
+
+\begin{equation}
+    \begin{bmatrix} p_x \\ p_y \\ \theta \end{bmatrix}_{k+1} = 
+    \begin{bmatrix} p_x \\ p_y \\ \theta \end{bmatrix}_{k} + 
+    \begin{bmatrix} v \Delta t \cos(\theta) \\ v \Delta t \sin(\theta) \\ \omega \Delta t \end{bmatrix}_{k}
+\end{equation}
+Bu model, bir sonraki bölümde anlatılacak olan Sezgisel Kalman Filtresi'nin (UKF) "Tahmin" (Prediction) aşamasında kullanılacaktır.
+
+\section{Göreceli Ölçüm Modeli}
+Her araç, üzerindeki LiDAR veya Radar sensörleri aracılığıyla çevresindeki diğer araçları tespit edebilir. Araç $i$'nin Araç $j$'yi algıladığı durumdaki ölçüm vektörü $z_{ij}$, aradaki mesafeyi ($r_{ij}$) ve açıyı ($\phi_{ij}$) içerir:
+
+\begin{equation}
+    z_{ij} = h(x_i, x_j) + \eta_{ij} = 
+    \begin{bmatrix} 
+    \sqrt{(p_x^j - p_x^i)^2 + (p_y^j - p_y^i)^2} \\ 
+    \text{atan2}(p_y^j - p_y^i, p_x^j - p_x^i) - \theta^i 
+    \end{bmatrix} + \eta_{ij}
+\end{equation}
+
+Burada $\eta_{ij}$, ölçüm sensöründeki gürültüyü (Measurement Noise) ifade eder. Bu model, filtrenin "Düzeltme" (Correction) aşamasında kullanılacaktır.
+
+\section{Dağıtık İletişim ve Veri Paylaşım Protokolü}
+Merkezi bir otoritenin bulunmadığı ve tekil başarısızlık noktalarının (Single Point of Failure) engellendiği bu sistemde, "Durum Paylaşımı" (State Exchange) yöntemi benimsenmiştir.
+
+Araçlar, ham sensör verilerini (raw data) paylaşmak yerine, kendi işlemcilerinde hesapladıkları durum kestirimlerini paylaşırlar. Bu yaklaşım, iletişim bant genişliğini (Bandwidth) verimli kullanmak ve ağ yoğunluğunu önlemek için kritiktir. 
+
+Bir araç ($i$) tarafından yayınlanan ve diğer araçlarca dinlenen veri paketinin yapısı şöyledir:
+
+\begin{table}[h!]
+\centering
+\caption{V2V İletişim Paketi İçeriği}
+\label{tab:veri_paketi}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Veri Alanı} & \textbf{Sembol} & \textbf{Açıklama} \\ \hline
+Araç Kimliği & $ID_i$ & Gönderen aracın benzersiz numarası. \\ \hline
+Durum Kestirimi & $\hat{x}_i$ & Aracın kendi hesapladığı Konum ve Yönelim $[x, y, \theta]^T$. \\ \hline
+Kovaryans Matrisi & $P_i$ & Aracın kendi konumuna ne kadar güvendiğini gösteren hata matrisi. \\ \hline
+Zaman Damgası & $t_k$ & Verinin oluşturulduğu an. \\ \hline
+\end{tabular}
+\end{table}
+
+Bu protokol sayesinde, alıcı araç ($j$); hem gönderici aracın ($i$) nerede olduğunu iddia ettiğini ($\hat{x}_i$) öğrenir, hem de bu bilgiye ne kadar güvenmesi gerektiğini ($P_i$) analiz edebilir.

@@ -1,0 +1,37 @@
+\chapter{Giriş}
+\label{ch:giris}
+
+Otonom araç teknolojileri, günümüzde sadece sivil ulaşım sistemlerinde değil, savunma sanayii ve insansız kara araçları (İKA) konseptlerinde de kritik bir rol oynamaktadır. Bu sistemlerin tam otonom (Seviye 4 ve 5) görev yapabilmesi için, aracın her koşulda "Ben neredeyim?" sorusuna yüksek hassasiyetle cevap verebilmesi gerekmektedir \cite{slam2016}.
+
+\section{Çalışmanın Önemi ve Gerekliliği}
+Mevcut otonom sistemlerin Küresel Konumlandırma Sistemlerine (GNSS/GPS) olan bağımlılığı, hem sivil hem de askeri senaryolarda ciddi güvenlik zafiyetleri doğurmaktadır. Bu tezi gerekli kılan temel faktörler şunlardır:
+
+\begin{itemize}
+    \item \textbf{Elektronik Harp ve GPS Karıştırma (Jamming):} Askeri operasyon sahalarında düşman unsurların GPS sinyallerini karıştırması (Jamming) veya yanıltması (Spoofing) sık karşılaşılan bir durumdur. Bu "GPS'siz ortamda" (GPS-Denied Environment) otonom sürülerin görevine devam edebilmesi hayati önem taşır.
+    \item \textbf{Hasar Durumu ve Beka Kabiliyeti (Survivability):} Çatışma ortamında araçlar fiziksel hasar alabilir ve üzerindeki bazı sensörler (Lidar kırılması, kameranın kör olması vb.) devre dışı kalabilir. İşbirlikli konumlandırma sayesinde, "kör" kalan hasarlı bir araç, sağlam olan diğer araçlardan aldığı verilerle görevine devam edebilir veya güvenli bölgeye dönebilir.
+    \item \textbf{Şehir Kanyonları (Urban Canyons):} Sivil kullanımda ise yüksek binaların bulunduğu alanlarda uydu sinyalleri kesilmektedir. Bu çalışma, hem sivil trafiği hem de meskun mahal operasyonlarını kapsayan hibrit bir çözüm sunmaktadır.
+\end{itemize}
+
+\section{Problem Tanımı}
+Tekil bir otonom araç, dış referansını (GPS) kaybettiği anda sadece kendi iç sensörlerine (IMU) güvenir. Ancak:
+\begin{enumerate}
+    \item IMU sensörleri zamanla hata biriktirir (Drift/Sürüklenme).
+    \item Aracın hasar alması durumunda bu sensörler tamamen susabilir.
+\end{enumerate}
+Bu durumda araç, kendi konumu hakkında tamamen hatalı bir tahmine kapılarak rotadan çıkabilir veya dost unsurlara çarpabilir \cite{simon2006}.
+
+\section{Tezin Amacı}
+Bu çalışmanın temel amacı, GPS erişiminin olmadığı veya sensör kaybının yaşandığı ekstrem durumlarda, **"Sürü Zekası"** kullanarak konum doğruluğunu korumaktır. Proje kapsamında:
+\begin{enumerate}
+    \item Araçların V2V (Araçtan Araca) haberleşme ile birbirlerini birer "referans istasyonu" olarak kullanması,
+    \item **Genişletilmiş Kalman Filtresi (EKF)** ile hasarlı veya gürültülü verilerin ayıklanarak en doğru konumun kestirilmesi,
+    \item Böylece tekil başarısızlık noktalarının (Single Point of Failure) sürü işbirliği ile elimine edilmesi hedeflenmektedir \cite{wang2018}.
+\end{enumerate}
+
+\section{Tezin Kapsamı}
+Bu çalışma, dinamik ve düşman unsurların olabileceği ortamlar göz önüne alınarak tasarlanmıştır.
+\begin{itemize}
+    \item **Kullanılan Yöntem:** Dağıtık (Decentralized) EKF mimarisi. (Merkezi bir komuta aracına ihtiyaç duymaz, böylece komuta aracı vurulsa bile sürü dağılmaz).
+    \item **Senaryo:** GPS'in kesildiği tünel geçişleri ve elektronik harp simülasyonları.
+    \item **Kısıtlar:** İletişim gecikmeleri ve veri tekrarı (Double Counting) problemleri literatür ışığında analiz edilmiştir \cite{hery2021consistent}.
+\end{itemize}
